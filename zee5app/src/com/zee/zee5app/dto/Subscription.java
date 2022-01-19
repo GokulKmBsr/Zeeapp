@@ -4,10 +4,14 @@ import lombok.Data;
 
 @Data
 public class Subscription {
-	private String subscriberUserName;
+	private String type;
 	private String id;
 	private String email;
 	private String dateofpurcahse;
+	private String status;
 	private String paymentmode;
+	private String packCountry;
+	private String autoRenewal;
+	private String expiryDate;
 	
 }
