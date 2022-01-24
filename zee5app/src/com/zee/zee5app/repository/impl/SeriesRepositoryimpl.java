@@ -88,7 +88,7 @@ import com.zee.zee5app.dto.Register;
 import com.zee.zee5app.exception.IdNotFoundException;
 import com.zee.zee5app.repository.UserRepository;
 
-public class UserRepositoryimpl implements UserRepository {
+public class SeriesRepositoryimpl implements UserRepository {
 	
 	private TreeSet<Register> set = new TreeSet<>();
 	//private List<Register> set = new LinkedList<>();
@@ -101,7 +101,7 @@ public class UserRepositoryimpl implements UserRepository {
 	
 	//private static int count=-1;
 	
-	private UserRepositoryimpl() {
+	private SeriesRepositoryimpl() {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -109,7 +109,7 @@ public class UserRepositoryimpl implements UserRepository {
 	
 	public static UserRepository getInstance() {
 		if(repository==null) {
-			repository = new UserRepositoryimpl();
+			repository = new SeriesRepositoryimpl();
 		}
 		return repository;
 	}

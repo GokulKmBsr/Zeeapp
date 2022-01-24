@@ -86,9 +86,10 @@ import java.util.TreeSet;
 
 import com.zee.zee5app.dto.Register;
 import com.zee.zee5app.exception.IdNotFoundException;
+import com.zee.zee5app.repository.MoviesRepository;
 import com.zee.zee5app.repository.UserRepository;
 
-public class UserRepositoryimpl implements UserRepository {
+public class MoviesRepositoryimpl implements MoviesRepository {
 	
 	private TreeSet<Register> set = new TreeSet<>();
 	//private List<Register> set = new LinkedList<>();
@@ -101,7 +102,7 @@ public class UserRepositoryimpl implements UserRepository {
 	
 	//private static int count=-1;
 	
-	private UserRepositoryimpl() {
+	private MoviesRepositoryimpl() {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -109,7 +110,7 @@ public class UserRepositoryimpl implements UserRepository {
 	
 	public static UserRepository getInstance() {
 		if(repository==null) {
-			repository = new UserRepositoryimpl();
+			repository = new MoviesRepositoryimpl();
 		}
 		return repository;
 	}
