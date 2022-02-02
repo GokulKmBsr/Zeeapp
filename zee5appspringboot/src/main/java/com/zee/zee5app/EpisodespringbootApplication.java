@@ -60,7 +60,7 @@ public class EpisodespringbootApplication {
 	try {
 		episode1 = service.getEpisodeById("epi000001");
 		System.out.println(episode1.get());
-	} catch (IdNotFoundException | InvalidIdLengthException | javax.naming.NameNotFoundException e1) {
+	} catch (IdNotFoundException | InvalidIdLengthException | NameNotFoundException e1) {
 		// TODO Auto-generated catch block
 		e1.printStackTrace();
 	}

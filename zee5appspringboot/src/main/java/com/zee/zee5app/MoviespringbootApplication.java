@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import javax.naming.NameNotFoundException;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +12,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import com.zee.zee5app.dto.Movie;
 import com.zee.zee5app.exception.IdNotFoundException;
 import com.zee.zee5app.exception.InvalidIdLengthException;
+import com.zee.zee5app.exception.NameNotFoundException;
 import com.zee.zee5app.service.MovieService;
 
 @SpringBootApplication
@@ -59,7 +59,7 @@ public class MoviespringbootApplication {
 		} else {
 			System.out.println("record is not found");
 		}
-	} catch (IdNotFoundException | InvalidIdLengthException | javax.naming.NameNotFoundException e2) {
+	} catch (IdNotFoundException | InvalidIdLengthException | NameNotFoundException e2) {
 		// TODO Auto-generated catch block
 		e2.printStackTrace();
 	}

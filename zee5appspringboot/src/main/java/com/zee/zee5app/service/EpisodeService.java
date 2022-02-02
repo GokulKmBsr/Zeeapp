@@ -3,11 +3,11 @@ package com.zee.zee5app.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.naming.NameNotFoundException;
 
 import com.zee.zee5app.dto.Episode;
 import com.zee.zee5app.exception.IdNotFoundException;
 import com.zee.zee5app.exception.InvalidIdLengthException;
+import com.zee.zee5app.exception.NameNotFoundException;
 
 public interface EpisodeService {
 	

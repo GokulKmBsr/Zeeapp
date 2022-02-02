@@ -48,7 +48,7 @@ public class MovieServiceImpl implements MovieService {
 				movieRepository.deleteById(id);
 				return "movie deleted";
 			}
-		} catch (IdNotFoundException | InvalidIdLengthException | NameNotFoundException e) {
+		} catch (IdNotFoundException | InvalidIdLengthException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new IdNotFoundException(e.getMessage());
@@ -64,14 +64,14 @@ public class MovieServiceImpl implements MovieService {
 
 	@Override
 	public Optional<Movie> getMovieById(String id)
-			throws IdNotFoundException, NameNotFoundException, InvalidIdLengthException {
+			throws IdNotFoundException, InvalidIdLengthException {
 		// TODO Auto-generated method stub
 		return movieRepository.findById(id);
 		//return null;
 	}
 
 	@Override
-	public Optional<List<Movie>> getAllMovie() throws NameNotFoundException, InvalidIdLengthException {
+	public Optional<List<Movie>> getAllMovie() throws InvalidIdLengthException {
 		// TODO Auto-generated method stub
 		return Optional.ofNullable(movieRepository.findAll());
 		//return null;

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import javax.naming.NameNotFoundException;
+
 import javax.sql.DataSource;
 
 import org.springframework.boot.SpringApplication;
@@ -18,6 +18,7 @@ import com.zee.zee5app.exception.InvalidEmailException;
 import com.zee.zee5app.exception.InvalidIdLengthException;
 import com.zee.zee5app.exception.InvalidNameException;
 import com.zee.zee5app.exception.InvalidPasswordException;
+import com.zee.zee5app.exception.NameNotFoundException;
 import com.zee.zee5app.repository.UserRepository;
 import com.zee.zee5app.service.SeriesService;
 import com.zee.zee5app.service.UserService;

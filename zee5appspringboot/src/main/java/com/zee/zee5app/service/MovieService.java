@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.naming.NameNotFoundException;
+//import javax.naming.NameNotFoundException;
 
 import com.zee.zee5app.dto.Movie;
 import com.zee.zee5app.exception.IdNotFoundException;
 import com.zee.zee5app.exception.InvalidIdLengthException;
+import com.zee.zee5app.exception.NameNotFoundException;
 import com.zee.zee5app.repository.MovieRepository;
 
 public interface MovieService {

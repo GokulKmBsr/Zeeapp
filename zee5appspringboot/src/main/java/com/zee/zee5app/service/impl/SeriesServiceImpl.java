@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.naming.NameNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zee.zee5app.dto.Series;
 import com.zee.zee5app.exception.IdNotFoundException;
 import com.zee.zee5app.exception.InvalidIdLengthException;
+import com.zee.zee5app.exception.NameNotFoundException;
 import com.zee.zee5app.service.SeriesService;
 import com.zee.zee5app.repository.SeriesRepository;
 //import com.zee.zee5app.repository.impl.SeriesRepositoryImpl;
