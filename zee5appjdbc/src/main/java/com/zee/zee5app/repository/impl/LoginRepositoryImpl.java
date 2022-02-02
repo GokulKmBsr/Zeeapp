@@ -230,6 +230,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.zee.zee5app.dto.Login;
@@ -242,6 +243,10 @@ import com.zee.zee5app.utils1.PasswordUtils;
 public class LoginRepositoryImpl implements LoginRepository {
 	
 	DBUtils dbUtils = DBUtils.getInstance();
+	
+	@Autowired
+	private PasswordUtils passwordUtils;
+	
     private LoginRepositoryImpl() throws IOException{
 		
 	}
@@ -348,8 +353,8 @@ public class LoginRepositoryImpl implements LoginRepository {
 		
 		try {
 			preparedStatement = connection.prepareStatement(updateStatement);
-			String salt = PasswordUtils.getSalt(30);
-			String encryptedPassword = PasswordUtils.generateSecurePassword(password, salt);
+			String salt = passwordUtils.getSalt(30);
+			String encryptedPassword = passwordUtils.generateSecurePassword(password, salt);
 			preparedStatement.setString(1, encryptedPassword);
 			preparedStatement.setString(2, userName);
 			

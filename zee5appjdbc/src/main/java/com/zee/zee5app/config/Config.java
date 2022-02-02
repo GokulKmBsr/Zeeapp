@@ -8,7 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
+
+import com.zee.zee5app.utils1.PasswordUtils;
 
 @Configuration //it is used to mark on config class/classes
 //here we will hold all commonly required objects for our application
@@ -23,7 +26,10 @@ public class Config {
 	
 	//config : db related ,reading prop file,commonly reqd beans (password encoder)
 	
-	@Bean //provide the singleton
+	@Bean(name= "ds") //provide the singleton
+	@Scope("prototype")  //if u will call getBean method n number of times then u will get N objects
+	// prototype -- to get multiple odject
+	//if we will not specify the bean name then it will take or consider the method name as a bean name
 	public DataSource dataSource() {
 		
 		BasicDataSource basicDataSource = new BasicDataSource();
@@ -32,6 +38,15 @@ public class Config {
 		basicDataSource.setUrl(environment.getProperty("jdbc.url"));
 		
 		return basicDataSource;
+	}
+	
+	@Bean  //are we going to create the object? yes
+	//this object can we initialize as per the req?
+	//can we custamize it as an when req ? in case of bean 
+	public PasswordUtils passwordUtils() {
+		// TODO Auto-generated method stub
+		return new PasswordUtils();
+
 	}
 
 }

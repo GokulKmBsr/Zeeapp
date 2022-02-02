@@ -79,7 +79,12 @@ public class UserRepositoryImpl implements UserRepository {
 //	}
 	@Autowired //it will bring already created object either by using name/type
     DataSource dataSource;
-	private static LoginRepository loginrepository = null;
+	
+	@Autowired
+	private PasswordUtils passwordUtils;
+	
+	@Autowired
+	private  LoginRepository loginrepository = null;
 	
 	
     public UserRepositoryImpl() throws IOException{
@@ -141,8 +146,8 @@ public class UserRepositoryImpl implements UserRepository {
 			preparedStatement.setBigDecimal(5, register.getContactnumber());
 			
 			//encrypting and storing password
-			String salt = PasswordUtils.getSalt(30);
-			String encryptedPassword = PasswordUtils.generateSecurePassword(register.getPassword(), salt);
+			String salt = passwordUtils.getSalt(30);
+			String encryptedPassword = passwordUtils.generateSecurePassword(register.getPassword(), salt);
 			preparedStatement.setString(6, encryptedPassword);
 			
 			///username: emailid

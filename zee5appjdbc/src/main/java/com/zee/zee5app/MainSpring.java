@@ -27,32 +27,39 @@ public class MainSpring {
 		//here we have to initialize the application context container
 		//java based config
 		AbstractApplicationContext applicationContext = new AnnotationConfigApplicationContext(Config.class);
-		UserRepository userRepository = applicationContext.getBean(UserRepository.class);
-		System.out.println(userRepository);
-		UserRepository userRepository2 = applicationContext.getBean(UserRepository.class);
-		System.out.println(userRepository2);
-		
-		System.out.println(userRepository.hashCode());
-		System.out.println(userRepository.hashCode());
-		System.out.println(userRepository.equals(userRepository2));
+		DataSource dataSource = applicationContext.getBean("ds",DataSource.class);
+		System.out.println(dataSource.hashCode());
+		DataSource dataSource2 = applicationContext.getBean("ds",DataSource.class);
+		System.out.println(dataSource2.hashCode());
+		System.out.println(dataSource.equals(dataSource2));
 		
 		
-		DataSource dataSource = applicationContext.getBean("dataSource",DataSource.class);
-		System.out.println(dataSource!=null);
-		
-		Register register;
-		
-		try {
-				register = new Register("ab000007","gokul7","km7","gokul7@gmail.com","yzab1234",null);
-				register.setContactnumber(new BigDecimal("7890123456"));
-				System.out.println(userRepository.addUser(register));
-			} catch (InvalidIdLengthException | InvalidNameException | InvalidEmailException
-					| InvalidPasswordException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		
+//		UserRepository userRepository = applicationContext.getBean(UserRepository.class);
+//		System.out.println(userRepository);
+//		UserRepository userRepository2 = applicationContext.getBean(UserRepository.class);
+//		System.out.println(userRepository2);
+//		
+//		System.out.println(userRepository.hashCode());
+//		System.out.println(userRepository.hashCode());
+//		System.out.println(userRepository.equals(userRepository2));
+//		
+//		
+//		DataSource dataSource = applicationContext.getBean("dataSource",DataSource.class);
+//		System.out.println(dataSource!=null);
+//		
+//		Register register;
+//		
+//		try {
+//				register = new Register("ab000008","gokul8","km8","gokul8@gmail.com","cdef1234",null);
+//				register.setContactnumber(new BigDecimal("8901234567"));
+//				System.out.println(userRepository.addUser(register));
+//			} catch (InvalidIdLengthException | InvalidNameException | InvalidEmailException
+//					| InvalidPasswordException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+//		
 		
 		applicationContext.close();
 
