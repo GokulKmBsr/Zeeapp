@@ -40,7 +40,7 @@ public class LoginspringbootApplication {
 	// ------addlogindetails----------
 	login = new Login("gokulkm1@gmail.com", "abcd1234", "ab000001", ROLE.ROLE_USER);
 	System.out.println(service.addCredentials(login));
-	login = new Login("gokulkm2@gmail.com", "efgh1234", "ab000002", ROLE.ROLE_USER);
+	login = new Login("gokulkm2@gmail.com", "efgh1234", "ab000001", ROLE.ROLE_USER);
 	System.out.println(service.addCredentials(login));
 	
 	

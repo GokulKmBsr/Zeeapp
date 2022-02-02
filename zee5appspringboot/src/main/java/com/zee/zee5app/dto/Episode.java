@@ -24,7 +24,7 @@ import lombok.ToString;
 @NoArgsConstructor
 
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "episodename")}, name = "episodes")
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "episodename")}, name = "episode")
 public class Episode implements Comparable<Movie> {
 	
 	@Id
