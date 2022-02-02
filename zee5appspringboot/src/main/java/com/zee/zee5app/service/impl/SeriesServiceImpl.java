@@ -21,18 +21,39 @@ import com.zee.zee5app.repository.SeriesRepository;
 public class SeriesServiceImpl implements SeriesService {
 	
 	@Autowired
-	private SeriesRepository repository;
+	private SeriesRepository seriesRepository;
 
 	@Override
 	public String addSeries(Series series) {
 		// TODO Auto-generated method stub
-		return null;
+		Series series2 = seriesRepository.save(series);
+		if (series2 != null) {
+			return "Successfully added series";
+		} else {
+			return "failed toadd series";
+		}
+		//return null;
 	}
 
 	@Override
 	public String deleteSeries(String id) throws IdNotFoundException {
 		// TODO Auto-generated method stub
-		return null;
+		Optional<Series> optional;
+		try {
+			optional = this.getSeriesById(id);
+			if(optional.isEmpty()) {
+				throw new IdNotFoundException("record not found");
+			}
+			else {
+				seriesRepository.deleteById(id);
+				return "series deleted";
+			}
+		} catch (IdNotFoundException | InvalidIdLengthException | NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new IdNotFoundException(e.getMessage());
+		}
+		//return null;
 	}
 
 	@Override
@@ -45,13 +66,15 @@ public class SeriesServiceImpl implements SeriesService {
 	public Optional<Series> getSeriesById(String id)
 			throws IdNotFoundException, NameNotFoundException, InvalidIdLengthException {
 		// TODO Auto-generated method stub
-		return null;
+		return seriesRepository.findById(id);
+		//return null;
 	}
 
 	@Override
 	public Optional<List<Series>> getAllSeries() throws NameNotFoundException, InvalidIdLengthException {
 		// TODO Auto-generated method stub
-		return null;
+		return Optional.ofNullable(seriesRepository.findAll());
+		//return null;
 	}
 
 //	private SeriesRepository repository = SeriesRepositoryImpl.getInstance();

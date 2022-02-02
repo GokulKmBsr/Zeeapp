@@ -20,18 +20,39 @@ import com.zee.zee5app.repository.SubscriptionRepository;
 public class SubscriptionServiceImpl implements SubscriptionService {
 	
 	@Autowired
-	private SubscriptionRepository repository;
+	private SubscriptionRepository subscriptionRepository;
 
 	@Override
 	public String addSubscription(Subscription subscription) throws InvalidAmountException {
 		// TODO Auto-generated method stub
-		return null;
+		Subscription subscription2 = subscriptionRepository.save(subscription);
+		if (subscription2 != null) {
+			return "Successfully added subscription";
+		} else {
+			return "failed toadd subscription";
+		}
+		//return null;
 	}
 
 	@Override
 	public String deleteSubscription(String id) throws IdNotFoundException {
 		// TODO Auto-generated method stub
-		return null;
+		Optional<Subscription> optional;
+		try {
+			optional = this.getSubscriptionById(id);
+			if(optional.isEmpty()) {
+				throw new IdNotFoundException("record not found");
+			}
+			else {
+				subscriptionRepository.deleteById(id);
+				return "subscription deleted";
+			}
+		} catch (IdNotFoundException | InvalidIdLengthException | InvalidAmountException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new IdNotFoundException(e.getMessage());
+		}
+		//return null;
 	}
 
 	@Override
@@ -44,13 +65,15 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 	public Optional<Subscription> getSubscriptionById(String id)
 			throws IdNotFoundException, InvalidIdLengthException, InvalidAmountException {
 		// TODO Auto-generated method stub
-		return null;
+		return subscriptionRepository.findById(id);
+		//return null;
 	}
 
 	@Override
 	public Optional<List<Subscription>> getAllSubscription() throws InvalidIdLengthException, InvalidAmountException {
 		// TODO Auto-generated method stub
-		return null;
+		return Optional.ofNullable(subscriptionRepository.findAll());
+		//return null;
 	}
 
 //	private SubscriptionRepository repository = SubscriptionRepositoryImpl.getInstance();

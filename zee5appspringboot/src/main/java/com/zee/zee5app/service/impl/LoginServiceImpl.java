@@ -41,22 +41,22 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public String deleteCredentials(String userName) {
 		// TODO Auto-generated method stub
-//		try {
-//			Optional<Login> optional = this.get(userName);
-//			if(optional.isEmpty()) {
-//				throw new IdNotFoundException("record not found");
-//			}
-//			else {
-//				loginRepository.deleteById(userName);
-//				return "success deleting";
-//			}
-//		} catch (IdNotFoundException | InvalidIdLengthException | InvalidEmailException | InvalidPasswordException
-//				| InvalidNameException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			throw new IdNotFoundException(e.getMessage());
-//		}
-		return null;
+		Optional<Login> optional;
+		try {
+			optional = loginRepository.findById(userName);
+			if(optional.isEmpty()) {
+				throw new IdNotFoundException("record not found");
+			}
+			else {
+				loginRepository.deleteById(userName);
+				return "login details deleted";
+			}
+		} catch (IdNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "fail";
+		}
+		//return null;
 	}
 
 	@Override

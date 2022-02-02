@@ -21,18 +21,39 @@ import com.zee.zee5app.repository.MovieRepository;
 public class MovieServiceImpl implements MovieService {
 	
 	@Autowired
-	private MovieRepository repository;
+	private MovieRepository movieRepository;
 
 	@Override
 	public String addMovie(Movie movie) {
 		// TODO Auto-generated method stub
-		return null;
+		Movie movie2 = movieRepository.save(movie);
+		if (movie2 != null) {
+			return "Successfully added movie";
+		} else {
+			return "failed toadd movie";
+		}
+		//return null;
 	}
 
 	@Override
 	public String deleteMovie(String id) throws IdNotFoundException {
 		// TODO Auto-generated method stub
-		return null;
+		Optional<Movie> optional;
+		try {
+			optional = this.getMovieById(id);
+			if(optional.isEmpty()) {
+				throw new IdNotFoundException("record not found");
+			}
+			else {
+				movieRepository.deleteById(id);
+				return "movie deleted";
+			}
+		} catch (IdNotFoundException | InvalidIdLengthException | NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new IdNotFoundException(e.getMessage());
+		}
+		//return null;
 	}
 
 	@Override
@@ -45,13 +66,15 @@ public class MovieServiceImpl implements MovieService {
 	public Optional<Movie> getMovieById(String id)
 			throws IdNotFoundException, NameNotFoundException, InvalidIdLengthException {
 		// TODO Auto-generated method stub
-		return null;
+		return movieRepository.findById(id);
+		//return null;
 	}
 
 	@Override
 	public Optional<List<Movie>> getAllMovie() throws NameNotFoundException, InvalidIdLengthException {
 		// TODO Auto-generated method stub
-		return null;
+		return Optional.ofNullable(movieRepository.findAll());
+		//return null;
 	}
 
 //	private MovieRepository repository = MovieRepositoryImpl.getInstance();

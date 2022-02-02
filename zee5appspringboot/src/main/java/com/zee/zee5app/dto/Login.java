@@ -1,11 +1,14 @@
 package com.zee.zee5app.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 
 //import org.springframework.data.annotation.Id;
 
@@ -17,27 +20,21 @@ import lombok.Setter;
 @Entity //entity class is used for ORM 
 //can we custamize the table name
 @Table(name = "login")
+@AllArgsConstructor
 
 public class Login implements Comparable<Login>{
 	@Id
-//	@Setter(value = AccessLevel.NONE)
+	@Column(name="username")
 	private String userName;
+	
 	@NotNull
 	private String password;
+	
+	@NotBlank
 	private String regId;
+	
 	private ROLE role;
 	
-//	public Login(String userName, String password, String regId, ROLE role) {
-//		super();
-//		this.userName = userName;
-//		this.password = password;
-//		this.regId = regId;
-//		this.role = role;
-//	}
-//
-//	public Login() {
-//		// TODO Auto-generated constructor stub
-//	}
 
 	@Override
 	public int compareTo(Login o) {
