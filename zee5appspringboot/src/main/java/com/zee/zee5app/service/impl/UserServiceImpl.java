@@ -8,13 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.zee.zee5app.dto.Role;
+import com.zee.zee5app.dto.Login;
+import com.zee.zee5app.dto.EROLE;
 import com.zee.zee5app.dto.Register;
+import com.zee.zee5app.exception.AlreadyExistsException;
 import com.zee.zee5app.exception.IdNotFoundException;
 import com.zee.zee5app.exception.InvalidEmailException;
 import com.zee.zee5app.exception.InvalidIdLengthException;
 import com.zee.zee5app.exception.InvalidNameException;
 import com.zee.zee5app.exception.InvalidPasswordException;
+import com.zee.zee5app.repository.LoginRepository;
 import com.zee.zee5app.repository.UserRepository;
+import com.zee.zee5app.service.LoginService;
 //import com.zee.zee5app.repository.impl.UserRepositoryImpl;
 import com.zee.zee5app.service.UserService;
 
@@ -25,6 +31,13 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	//Login Service
+	@Autowired
+	private LoginService loginService;
+	//private LoginServiceImpl loginService; //we need to use login service instead of loginserviceimpl,but both will work
+	
+	@Autowired
+	private LoginRepository loginRepository;
 //	private UserServiceImpl() throws IOException {
 //		
 //	}
@@ -36,19 +49,37 @@ public class UserServiceImpl implements UserService {
 //		return service;
 //	}
 	
-	
 	@Override
-	public String addUser(Register register) {
+	@org.springframework.transaction.annotation.Transactional(rollbackFor = AlreadyExistsException.class)
+	
+	public String addUser(Register register) throws AlreadyExistsException {
 		// TODO Auto-generated method stub
 		
 		//return this.repository.addUser(register);
+		//userRepository.findById(register.getId());
+		if(userRepository.existsByEmailAndContactnumber(register.getEmail(), register.getContactnumber()) == true) {
+			throw new AlreadyExistsException("this record already exists");
+		}
 		Register register2 = userRepository.save(register);
 		if(register2!=null) {
-			return "Successfully added user";
+			//add credentials
+			Login login = new Login(register2.getEmail(), register2.getPassword(), register2.getId());
+			if(loginRepository.existsByuserName(register.getEmail())) {
+				throw new AlreadyExistsException("record exists");
+			}
+			String result = loginService.addCredentials(login);
+			if(result != "success") {
+				return "record added in register and login";
+			}
+			else {
+				return "fail";
+			}
+			//return "Successfully added user";
 		}
 		else {
 			return "failed to add user";
 		}
+		//return null;
 	}
 
 @Override

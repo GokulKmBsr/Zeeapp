@@ -69,7 +69,7 @@ public class MoviespringbootApplication {
 	try {
 		optional = service.getAllMovie();
 		if (optional.isEmpty()) {
-			System.out.println("there are no records");
+			System.out.println("no movie");
 		} else {
 			optional.get().forEach(e -> System.out.println(e));
 		}

@@ -3,6 +3,8 @@ package com.zee.zee5app.dto;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
@@ -34,8 +36,8 @@ public class Episode implements Comparable<Movie> {
 	@NotBlank
 	private String episodename;
 	private int length;
-	@NotBlank
-	private String seriesid;
+//	@NotBlank
+//	private String seriesid;
 	@NotBlank
 	private String location;
 	private String trailer;
@@ -45,5 +47,10 @@ public class Episode implements Comparable<Movie> {
 		// TODO Auto-generated method stub
 		return this.id.compareTo(o.getId());
 	}
+	
+	@ManyToOne
+	//this episode table should have FK.seriesid
+	@JoinColumn(name="seriesid")
+	private Series series; //it should take series id,and that column should act as foreign key column
 
 }

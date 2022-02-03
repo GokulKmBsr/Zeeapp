@@ -1,13 +1,22 @@
 package com.zee.zee5app.dto;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 
 @Entity
 @Table(name = "login")
@@ -19,19 +28,9 @@ public class Login implements Comparable<Login>{
 	
 	private String password;
 	private String regId;
-	private ROLE role;
+	//private ROLE role;
+	//private Role role;
 	
-	public Login(String userName, String password, String regId, ROLE role) {
-		super();
-		this.userName = userName;
-		this.password = password;
-		this.regId = regId;
-		this.role = role;
-	}
-
-	public Login() {
-		// TODO Auto-generated constructor stub
-	}
 
 	@Override
 	public int compareTo(Login o) {

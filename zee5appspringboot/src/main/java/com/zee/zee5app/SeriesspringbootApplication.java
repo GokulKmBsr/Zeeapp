@@ -41,11 +41,11 @@ public class SeriesspringbootApplication {
 	Series series;
 	
 	// ------addseries----------
-	series = new Series("ser000001", "ABC", "a,b", "10/01/2022", null, "english", "10", "action", 30);
-	System.out.println(service.addSeries(series));
-	series = new Series("ser000002", "XYZ", "c,d", "20/01/2022", null, "kannada", "18", "thriller", 59);
-	System.out.println(service.addSeries(series));
-	
+//	series = new Series("ser000001", "ABC", "a,b", "10/01/2022", null, "english", "10", "action", 30);
+//	System.out.println(service.addSeries(series));
+//	series = new Series("ser000002", "XYZ", "c,d", "20/01/2022", null, "kannada", "18", "thriller", 59);
+//	System.out.println(service.addSeries(series));
+//	
 	//----------deleteseries---------
 	try {
 		System.out.println(service.deleteSeries("ser000002"));
@@ -71,7 +71,7 @@ public class SeriesspringbootApplication {
 		try {
 			optional = service.getAllSeries();
 			if (optional.isEmpty()) {
-				System.out.println("there are no records");
+				System.out.println("no series");
 			} else {
 				optional.get().forEach(e -> System.out.println(e));
 			}

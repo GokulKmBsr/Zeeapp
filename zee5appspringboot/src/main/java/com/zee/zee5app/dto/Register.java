@@ -1,10 +1,17 @@
 package com.zee.zee5app.dto;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -79,5 +86,14 @@ public class Register implements Comparable<Register>{
 		//descending order
 		//return o.id.compareTo(this.getId())
 	}
+	
+	@ManyToMany
+	//3rd table
+	@JoinTable(name="user_roles",joinColumns = @JoinColumn(name="regId"),inverseJoinColumns = @JoinColumn(name="roleId")) //registered user(regid) and role(roleid)
+	private Set<Role> roles=new HashSet<>();
+	
+	
+	@OneToOne(mappedBy = "register",cascade = CascadeType.ALL)
+	private Subscription subscription;
 
 }

@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.zee.zee5app.dto.Login;
-import com.zee.zee5app.dto.ROLE;
+import com.zee.zee5app.dto.Role;
 import com.zee.zee5app.dto.Register;
 import com.zee.zee5app.exception.IdNotFoundException;
 import com.zee.zee5app.exception.InvalidEmailException;
@@ -38,9 +38,9 @@ public class LoginspringbootApplication {
 	Login login;
 	
 	// ------addlogindetails----------
-	login = new Login("gokulkm1@gmail.com", "abcd1234", "ab000001", ROLE.ROLE_USER);
+	login = new Login("gokulkm1@gmail.com", "abcd1234", "ab000001" );
 	System.out.println(service.addCredentials(login));
-	login = new Login("gokulkm2@gmail.com", "efgh1234", "ab000001", ROLE.ROLE_USER);
+	login = new Login("gokulkm2@gmail.com", "efgh1234", "ab000001");
 	System.out.println(service.addCredentials(login));
 	
 	

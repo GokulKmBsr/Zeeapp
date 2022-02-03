@@ -45,7 +45,7 @@ public class Movie implements Comparable<Movie>{
 	@NotBlank
 	private String moviename;
 	@NotBlank
-	private String Cast;
+	private String cast;
 	private int length;
 	@NotNull
 	private String releaseDate;

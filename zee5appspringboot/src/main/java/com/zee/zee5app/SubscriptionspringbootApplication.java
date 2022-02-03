@@ -60,7 +60,7 @@ public class SubscriptionspringbootApplication {
 //	
 //	//----------deletesubscription---------
 //	try {
-//		System.out.println(service.deleteSubscription("ab000002"));
+//		System.out.println(service.deleteSubscription("sub000002"));
 //	} catch (IdNotFoundException e) {
 //		// TODO Auto-generated catch block
 //		e.printStackTrace();
@@ -82,7 +82,7 @@ public class SubscriptionspringbootApplication {
 	try {
 		optional = service.getAllSubscription();
 		if (optional.isEmpty()) {
-			System.out.println("there are no records");
+			System.out.println("no subscription");
 		} else {
 			optional.get().forEach(e -> System.out.println(e));
 		}

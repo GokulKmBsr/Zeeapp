@@ -70,7 +70,7 @@ public class EpisodespringbootApplication {
 	try {
 		optional = service.getAllEpisode();
 		if (optional.isEmpty()) {
-			System.out.println("there are no records");
+			System.out.println(" no episode");
 		} else {
 			optional.get().forEach(e -> System.out.println(e));
 		}
