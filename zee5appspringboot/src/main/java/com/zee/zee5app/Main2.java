@@ -1,7 +1,13 @@
 package com.zee.zee5app;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.boot.SpringApplication;
@@ -16,7 +22,10 @@ import com.zee.zee5app.dto.Role;
 import com.zee.zee5app.dto.Series;
 import com.zee.zee5app.dto.Subscription;
 import com.zee.zee5app.exception.AlreadyExistsException;
+import com.zee.zee5app.exception.IdNotFoundException;
 import com.zee.zee5app.exception.InvalidAmountException;
+import com.zee.zee5app.exception.InvalidIdLengthException;
+import com.zee.zee5app.exception.NameNotFoundException;
 import com.zee.zee5app.repository.MovieRepository;
 import com.zee.zee5app.repository.RoleRepository;
 import com.zee.zee5app.repository.SeriesRepository;
@@ -125,16 +134,154 @@ public class Main2 {
 		
 //-----------------Subscription with one to one user---------
 		
-		UserService service = applicationContext.getBean(UserService.class);
-		Register register;
-		register = new Register("ab000006","gokul6","km6","gokul6@gmail.com","ijkl1234",null, null,null);
-		register.setContactnumber(new BigDecimal("1234567890"));
-		SubscriptionService subscriptionService = applicationContext.getBean(SubscriptionService.class);
-		Subscription subscription;
-		subscription = new Subscription("sub000001", "10/01/2022", 499.0f, "credit", "10/02/2022", "active", "monthly","false", register);
-	    subscriptionService.addSubscription(subscription);
-	    applicationContext.close();
-
+//		UserService service = applicationContext.getBean(UserService.class);
+//		Register register;
+//		register = new Register("ab000006","gokul6","km6","gokul6@gmail.com","ijkl1234",null, null,null);
+//		register.setContactnumber(new BigDecimal("1234567890"));
+//		SubscriptionService subscriptionService = applicationContext.getBean(SubscriptionService.class);
+//		Subscription subscription;
+//		subscription = new Subscription("sub000001", "10/01/2022", 499.0f, "credit", "10/02/2022", "active", "monthly","false", register);
+//	    subscriptionService.addSubscription(subscription);
+//	    applicationContext.close();
+		
+		
+		//-----------------moviestriler--------
+//		MovieService movieService = applicationContext.getBean(MovieService.class);
+//		
+//		Movie movie = new Movie();
+//		movie.setId("mov000003");
+//		movie.setAgeLimit("18");
+//		movie.setCast("Allu Arjun");
+//		movie.setLanguage("hindi");
+//		movie.setLength(250);
+//		movie.setMoviename("pushpa");
+//		movie.setGenre("abc");
+//		FileInputStream fileInputStream = null;
+//		try {
+//		 fileInputStream = new FileInputStream("C:\\Users\\gokul.km\\Downloads\\pushpa.mp4");
+//		 long fileSize = new File("C:\\Users\\gokul.km\\Downloads\\pushpa.mp4").length();
+//         byte[] allBytes = new byte[(int) fileSize];
+//         
+//         fileInputStream.read(allBytes);
+//         
+//         movie.setTrailer(allBytes);
+//         
+//         movie.setReleaseDate("2022-12-15");
+//         movieService.addMovie(movie);
+//         
+//         
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		finally {
+//			try {
+//				fileInputStream.close();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		
+//		movie.setTrailer(null);
+		
+///------------------
+		
+//		MovieService movieService = applicationContext.getBean(MovieService.class);
+//		FileOutputStream fileOutputStream = null;
+//		try {
+//			Optional<Movie> optional=movieService.getMovieById("mov000003");
+//			if(optional.isEmpty()) {
+//				System.out.println("movie record not found");
+//			}
+//			else {
+//				//we should print the info and copy the file to movies folder with name pushpa2.
+//				Movie movie=optional.get();
+//				fileOutputStream = new FileOutputStream("C:\\Users\\gokul.km\\Downloads\\read\\pushpa2.mp4");
+//				fileOutputStream.write(movie.getTrailer());
+//			}
+//		} catch (IdNotFoundException | NameNotFoundException | InvalidIdLengthException | IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		finally {
+//				try {
+//					fileOutputStream.close();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			
+//		}
+		
+		
+//----------------
+//MovieService movieService = applicationContext.getBean(MovieService.class);
+//		
+//		Movie movie = new Movie();
+//		movie.setId("mov001");
+//		
+//		movie.setAgeLimit("18");
+//		movie.setCast("Allu Arjun");
+//		movie.setLanguage("hindi");
+//		movie.setLength(250);
+//		movie.setMoviename("pushpa");
+//		movie.setGenre("abc");
+//		FileInputStream fileInputStream = null;
+//		FileOutputStream fileOutputStream = null;
+//		try {
+//		 fileInputStream = new FileInputStream("C:\\Users\\gokul.km\\Downloads\\pushpa.mp4");
+//		 File file = new File("C:\\Users\\gokul.km\\Downloads\\pushpa.mp4");
+//		 long fileSize= file.length();
+//         byte[] allBytes = new byte[(int) fileSize];
+//         
+//         //fileInputStream.read(allBytes);
+//         
+//         movie.setTrailer("C:\\Users\\gokul.km\\Downloads\\movieStore\\"+file.getName());
+//         
+//         movie.setReleaseDate("2022-12-15");
+//       String result =  movieService.addMovie(movie);
+//       
+//       if(result.equals("Successfully added movie")) {
+//    	   
+//    	   fileOutputStream = new FileOutputStream("C:\\Users\\gokul.km\\Downloads\\movieStore\\"+file.getName());
+//    	   
+//    	   //byte[] data = new byte[(int) file.length()];
+//    	   
+//    	   fileInputStream.read(allBytes);
+//    	   fileOutputStream.write(allBytes);
+//    	   
+//       }
+//         
+//         
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		finally {
+//			try {
+//				fileInputStream.close();
+//				fileOutputStream.close();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+		
+//---------------------movie trailer completed-------------------
+		
+		
+//------------------episodes trailer---------
+		
+		
+		
+		//applicationContext.close();
 	}
 
 }

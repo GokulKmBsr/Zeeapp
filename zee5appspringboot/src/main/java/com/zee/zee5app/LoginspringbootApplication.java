@@ -26,30 +26,30 @@ public class LoginspringbootApplication {
 	public static void main(String[] args) {
 		
 	ConfigurableApplicationContext applicationContext =	SpringApplication.run(LoginspringbootApplication.class, args);
-	
-//	DataSource dataSource = applicationContext.getBean(DataSource.class);
-//	System.out.println(dataSource!=null);
 //	
-//	UserRepository userRepository  = applicationContext.getBean(UserRepository.class);
-	
-	System.out.println("Register table");
-	
-	LoginService service = applicationContext.getBean(LoginService.class);
-	Login login;
-	
-	// ------addlogindetails----------
-	login = new Login("gokulkm1@gmail.com", "abcd1234", "ab000001" );
-	System.out.println(service.addCredentials(login));
-	login = new Login("gokulkm2@gmail.com", "efgh1234", "ab000001");
-	System.out.println(service.addCredentials(login));
-	
-	
-	//----------deletlogindetails---------
-
-	System.out.println(service.deleteCredentials("gokulkm2@gmail.com"));
-	
-	applicationContext.close();
-	
+////	DataSource dataSource = applicationContext.getBean(DataSource.class);
+////	System.out.println(dataSource!=null);
+////	
+////	UserRepository userRepository  = applicationContext.getBean(UserRepository.class);
+//	
+//	System.out.println("Register table");
+//	
+//	LoginService service = applicationContext.getBean(LoginService.class);
+//	Login login;
+//	
+//	// ------addlogindetails----------
+//	login = new Login("gokulkm1@gmail.com", "abcd1234", "ab000001" );
+//	System.out.println(service.addCredentials(login));
+//	login = new Login("gokulkm2@gmail.com", "efgh1234", "ab000001");
+//	System.out.println(service.addCredentials(login));
+//	
+//	
+//	//----------deletlogindetails---------
+//
+//	System.out.println(service.deleteCredentials("gokulkm2@gmail.com"));
+//	
+//	applicationContext.close();
+//	
 	}
 	
 	
