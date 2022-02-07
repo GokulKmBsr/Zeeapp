@@ -2,6 +2,7 @@ package com.zee.zee5app.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -11,6 +12,9 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.zee.zee5app.exception.InvalidAmountException;
 import com.zee.zee5app.exception.InvalidIdLengthException;
 
@@ -55,7 +59,9 @@ public class Subscription implements Comparable<Subscription>{
 //    @NotBlank
 //    private String regId;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@JoinColumn(name = "regId")
 	private Register register;
 

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zee.zee5app.dto.Movie;
+import com.zee.zee5app.exception.AlreadyExistsException;
 import com.zee.zee5app.exception.IdNotFoundException;
 import com.zee.zee5app.exception.InvalidIdLengthException;
 import com.zee.zee5app.service.MovieService;
@@ -24,15 +25,24 @@ public class MovieServiceImpl implements MovieService {
 	private MovieRepository movieRepository;
 
 	@Override
-	public String addMovie(Movie movie) {
+	@org.springframework.transaction.annotation.Transactional(rollbackFor = AlreadyExistsException.class)
+	public Movie addMovie(Movie movie) {
 		// TODO Auto-generated method stub
+//		Movie movie2 = movieRepository.save(movie);
+//		if (movie2 != null) {
+//			return "Successfully added movie";
+//		} else {
+//			return "failed toadd movie";
+//		}
+//		//return null;
+		movieRepository.findById(movie.getMoviename());
 		Movie movie2 = movieRepository.save(movie);
 		if (movie2 != null) {
-			return "Successfully added movie";
+			//return "record added in movie";
+			return movie2;
 		} else {
-			return "failed toadd movie";
+			return null;
 		}
-		//return null;
 	}
 
 	@Override

@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +23,7 @@ public class Role {
 	
 	@Id //Id must be auto generated
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@JsonProperty(access = Access.WRITE_ONLY)
 	private int roleId;
 	
 	//it should be the value from available Enums
