@@ -12,4 +12,6 @@ public interface FoodItemsRepository extends JpaRepository<FoodItems, String> {
 
 	Boolean existsByFoodNameAndFoodCost(String foodName,  String foodCost);
 	
+	
+	
 }

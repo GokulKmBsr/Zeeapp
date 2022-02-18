@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.learning.entity.Login;
-import com.learning.entity.Register;
+import com.learning.entity.User;
 import com.learning.exception.IdNotFoundException;
 import com.learning.repo.LoginRepository;
 import com.learning.service.LoginService;

@@ -18,7 +18,9 @@ spring:
         physical-strategy: com.zee.zee5app.utils1.CustomNamingStrategy
       ddl-auto: update  
 server:
-  port: 9014
-  servlet:
-    context-path: /api
+  port: 9015
+zee5app:
+  app:
+    jwtSecret: secretkey
+    jwtExpirationMs: 86400000
     

@@ -7,6 +7,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import lombok.AllArgsConstructor;
@@ -40,9 +41,9 @@ public class Login implements Comparable<Login>{
 	}
 	
 	@OneToOne
-	//@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
+	@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
     @JoinColumn(name = "regId")
     @JsonProperty(access = Access.WRITE_ONLY)
-	private Register register;
+	private User user;
 
 }

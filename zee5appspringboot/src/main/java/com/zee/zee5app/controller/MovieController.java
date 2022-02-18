@@ -11,7 +11,8 @@ import com.zee.zee5app.dto.Movie;
 import com.zee.zee5app.service.MovieService;
 
 @RestController
-@RequestMapping("/movies")
+//@RequestMapping("/movies")
+@RequestMapping("/api/movies")
 public class MovieController {
 	
 	@Autowired

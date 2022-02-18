@@ -34,7 +34,7 @@ public class FoodItems implements Comparable<FoodItems>{
 	
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
-	private String foodId;
+	private Long foodId;
 	
     @NotBlank
 	private String foodName;
@@ -45,7 +45,7 @@ public class FoodItems implements Comparable<FoodItems>{
 //    @NotBlank
 //	private String foodType;
     
-//  @NotBlank
+    @NotBlank
 	private String description;
     
     private String foodPic;

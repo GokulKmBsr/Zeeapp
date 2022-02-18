@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.zee.zee5app.dto.Login;
-import com.zee.zee5app.dto.Register;
+import com.zee.zee5app.dto.User;
 import com.zee.zee5app.exception.AlreadyExistsException;
 import com.zee.zee5app.exception.IdNotFoundException;
 import com.zee.zee5app.exception.InvalidEmailException;
@@ -36,45 +36,52 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@org.springframework.transaction.annotation.Transactional(rollbackFor = AlreadyExistsException.class)
-	public Register addUser(Register register) throws AlreadyExistsException {
+	public User addUser(User register) throws AlreadyExistsException {
 		// TODO Auto-generated method stub
 		//make exception for the next line
-		boolean status = repository.existsByEmailAndContactnumber(register.getEmail(), register.getContactnumber()) ;
+		boolean status = repository.existsByEmail(register.getEmail()) ;
 		if(status) {
 			throw new AlreadyExistsException("this record already exists");
 		}
-		Register register2 = repository.save(register);
-		if (register2 != null) {
-			Login login = new Login(register.getEmail(), register.getPassword(),register2);
-			if(loginRepository.existsByuserName(register.getEmail())) {
-				throw new AlreadyExistsException("this record already exists");
-			}
-			String result = service.addCredentials(login);
-			if(result == "success") {
-					//return "record added in register and login";
-				return register2;
-			}
-			else {
-				return null;
-			}
-		}	
+		User register2 = repository.save(register);
+		if (register2 !=null) {
+			return register2;
+		}
 		else {
 			return null;
 		}
-				
 	}
+//		if (register2 != null) {
+//			Login login = new Login(register.getEmail(), register.getPassword(),register2);
+//			if(loginRepository.existsByuserName(register.getEmail())) {
+//				throw new AlreadyExistsException("this record already exists");
+//			}
+//			String result = service.addCredentials(login);
+//			if(result == "Successfully added login details") {
+//					//return "record added in register and login";
+//				return register2;
+//			}
+//			else {
+//				return null;
+//			}
+//		}	
+//		else {
+//			return null;
+//		}
+//				
+//	}
 
 	@Override
-	public String updateUser(String id, Register register) throws IdNotFoundException {
+	public String updateUser(long id, User register) throws IdNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 		//we dont write here coz update is automatically taken care of
 	}
 
 	@Override
-	public Register getUserById(String id) throws IdNotFoundException {
+	public User getUserById(long id) throws IdNotFoundException {
 		// TODO Auto-generated method stub
-		Optional<Register> optional =  repository.findById(id);
+		Optional<User> optional =  repository.findById(id);
 		if(optional.isEmpty()) {
 			throw new IdNotFoundException("id does not exists");
 		}
@@ -84,21 +91,21 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Register[] getAllUsers()
+	public User[] getAllUsers()
 			throws InvalidIdLengthException, InvalidNameException, InvalidEmailException, InvalidPasswordException {
 		// TODO Auto-generated method stub
-		List<Register> list = repository.findAll();
-		Register[] array = new Register[list.size()];
+		List<User> list = repository.findAll();
+		User[] array = new User[list.size()];
 		return list.toArray(array);
 	}
 
 	@Override
-	public String deleteUserById(String id) throws IdNotFoundException {
+	public String deleteUserById(long id) throws IdNotFoundException {
 		// TODO Auto-generated method stub
 		//cross check with findbyid
 		//use optional here coz findbyid return optional type
 
-			Register optional;
+			User optional;
 			try {
 				optional = this.getUserById(id);
 				if(optional==null) {
@@ -117,7 +124,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Optional<List<Register>> getAllUserDetails() {
+	public Optional<List<User>> getAllUserDetails() {
 		// TODO Auto-generated method stub
 		return Optional.ofNullable(repository.findAll());
 	}

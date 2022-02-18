@@ -16,7 +16,7 @@ import com.learning.service.FoodTypeService;
 @SpringBootApplication
 public class FoodDeliveryspringbootApplication {
 
-	public static void main(String[] args) throws AlreadyExistsException {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 		ConfigurableApplicationContext applicationContext =	SpringApplication.run(FoodDeliveryspringbootApplication.class, args);
